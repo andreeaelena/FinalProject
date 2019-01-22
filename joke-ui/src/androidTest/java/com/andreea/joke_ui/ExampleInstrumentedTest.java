@@ -1,4 +1,4 @@
-package com.andreea.bakingapp.joke_ui;
+package com.andreea.joke_ui;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

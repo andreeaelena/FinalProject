@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">joke-ui</string>
+    <string name="no_joke_label">There is no joke to display.</string>
 </resources>

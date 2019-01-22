@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andreea.bakingapp.joke_ui" >
+    package="com.andreea.joke_ui" >
 
     <application
         android:allowBackup="false"
