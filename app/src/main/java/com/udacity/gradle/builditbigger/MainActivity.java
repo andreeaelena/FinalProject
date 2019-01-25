@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 mProgressView.setVisibility(View.GONE);
 
                 Intent jokeIntent = new Intent(getApplicationContext(), JokeActivity.class);
-                jokeIntent.putExtra(JokeActivity.JOKE_TEXT_EXTRA, joke);
+                if (!TextUtils.isEmpty(joke)) {
+                    jokeIntent.putExtra(JokeActivity.JOKE_TEXT_EXTRA, joke);
+                }
                 startActivity(jokeIntent);
             }
         }).execute();
