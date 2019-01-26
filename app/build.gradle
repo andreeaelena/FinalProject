@@ -65,3 +65,12 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
 }
+
+// runFunctionalTests - Gradle task that starts the GCE dev server, runs all the Android tests,
+// and shuts down the dev server:
+
+task runFunctionalTests
+task androidTest { dependsOn("connectedAndroidTest") }
+runFunctionalTests.dependsOn = [":backend:appengineStart", "androidTest"]
+runFunctionalTests.finalizedBy(":backend:appengineStop")
+androidTest.mustRunAfter ":backend:appengineStart"
