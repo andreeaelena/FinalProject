@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.builditbigger.paid;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,18 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.andreea.joke_ui.JokeActivity;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.udacity.gradle.builditbigger.JokeRequestCallback;
+import com.udacity.gradle.builditbigger.JokesEndpointAsyncTask;
+import com.udacity.gradle.builditbigger.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    /*@BindView(R.id.progress_view)*/ ProgressBar mProgressView;
+    private ProgressBar mProgressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ButterKnife.bind(this);
 
         mProgressView = findViewById(R.id.progress_view);
     }
@@ -55,15 +54,20 @@ public class MainActivity extends AppCompatActivity {
 
         new JokesEndpointAsyncTask(new JokeRequestCallback() {
             @Override
-            public void onResponse(String joke) {
+            public void onResponse(final String joke) {
                 mProgressView.setVisibility(View.GONE);
 
-                Intent jokeIntent = new Intent(getApplicationContext(), JokeActivity.class);
-                if (!TextUtils.isEmpty(joke)) {
-                    jokeIntent.putExtra(JokeActivity.JOKE_TEXT_EXTRA, joke);
-                }
-                startActivity(jokeIntent);
+                // Launch the JokeActivity:
+                launchJokeActivity(joke);
             }
         }).execute();
+    }
+
+    private void launchJokeActivity(String joke) {
+        Intent jokeIntent = new Intent(getApplicationContext(), JokeActivity.class);
+        if (!TextUtils.isEmpty(joke)) {
+            jokeIntent.putExtra(JokeActivity.JOKE_TEXT_EXTRA, joke);
+        }
+        startActivity(jokeIntent);
     }
 }
