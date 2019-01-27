@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+/**
+ * Activity that displays a joke received as a String extra.
+ */
 public class JokeActivity extends AppCompatActivity {
 
     public static final String JOKE_TEXT_EXTRA = "joke_text_extra";
